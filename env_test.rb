@@ -1,4 +1,4 @@
 # /env_test.rb
 require "dotenv/load"
 
-pp ENV.fetch("ACCESS_KEY")
+pp ENV.fetch("EXCHANGE_RATE_KEY")

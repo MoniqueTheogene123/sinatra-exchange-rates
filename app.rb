@@ -12,7 +12,7 @@ get("/") do
 
 
   # Assemble the API url, including the API key in the query string
-  api_url = "https://api.exchangerate.host/list?access_key=3f7fcf1d090548ea5f5ab1de8c9c6a4f"
+  api_url = "https://api.exchangerate.host/list?access_key=#{ENV.fetch(("EXCHANGE_RATE_KEY"))}"
 
   # Use HTTP.get to retrieve the API data
   @raw_response = HTTP.get(api_url)
@@ -36,3 +36,4 @@ get("/") do
   # Chrome to see what your templates are actually outputting, 
   # and embed as many instance variables as you need to (this 
   # is the new equivalent of pretty-printing everything).
+end
