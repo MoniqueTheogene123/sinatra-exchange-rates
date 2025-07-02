@@ -1,11 +1,11 @@
 <h1>Currency pairs</h1>
-<%= @currencies %>
-<!--<p>
 
 <ul>
-  <li><a href="/AED/AFN">Convert 1 AFN to AED...</a></li>
-  <li><a href="/dice/2/10">Roll two 10-sided dice</a></li>
-  <li><a href="/dice/1/20">Roll one 20-sided die</a></li>
-  <li><a href="/dice/5/4">Roll five 4-sided dice</a></li>
+  <% @currencies.keys.each do |symbol| %>
+
+    <li>
+      <a href="/<%= symbol %>">Convert 1 <%= symbol %>...</a>
+</li>
+
+  <% end %>
 </ul>
--->
