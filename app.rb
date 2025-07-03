@@ -19,34 +19,41 @@ get("/") do
   erb(:homepage)
 end
 
-get("/:from_currency") do
-  @original_currency = params.fetch("from_currency").to_s
 
-  api_url = "https://api.exchangerate.host/list?access_key=3f7fcf1d090548ea5f5ab1de8c9c6a4f"
+# https://exchange-rates.matchthetarget.com/margo
+
+
+# get("/:from_currency") do
+#   @from_currency = params.fetch("from_currency")
+
+#   api_url = "https://api.exchangerate.host/list?access_key=3f7fcf1d090548ea5f5ab1de8c9c6a4f"
+# puts "api_url, #{api_url}"
+
+#   raw_response = HTTP.get(api_url)
+
+#   string_response = raw_response.to_s
+
+#   parsed_response = JSON.parse(string_response)
   
-  @string_response = @raw_response.to_s
+#   @currencies = parsed_response.fetch("currencies")
 
-  @parsed_response = JSON.parse(@string_response)
+#   erb(:from_currency)
+# end
+
+
+# get("/:from_currency/:to_currency") do
+#   @original_currency = params.fetch("from_currency")
+#   @destination_currency = params.fetch("to_currency")
+
+#   @api_url = "https://api.exchangerate.host/convert?from=#{from_currency}&to=#{to_currency}&amount=1&access_key=3f7fcf1d090548ea5f5ab1de8c9c6a4f"
+
+#   @raw_response = HTTP.get(@api_url)
   
-  @currencies = @parsed_response.fetch("currencies")
+#   @string_response = @raw_response.to_s
 
-  erb(:c_one)
-end
-
-
-get("/:from_currency/:to_currency") do
-  @original_currency = params.fetch("from_currency")
-  @destination_currency = params.fetch("to_currency")
-
-  @api_url = "https://api.exchangerate.host/convert?from=#{from_currency}&to=#{to_currency}&amount=1&access_key=3f7fcf1d090548ea5f5ab1de8c9c6a4f"
-
-  @raw_response = HTTP.get(@api_url)
+#   @parsed_response = JSON.parse(@string_response)
   
-  @string_response = @raw_response.to_s
-
-  @parsed_response = JSON.parse(@string_response)
+#   @amount = @parsed_response.fetch("result")
   
-  @amount = @parsed_response.fetch("result")
-  
-  erb(:c_two)
-end
+#   erb(:to_currency)
+# end
