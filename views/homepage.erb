@@ -1,7 +1,6 @@
 <h1>Currency pairs</h1>
 
-/currencies.each do |country|
-
-<p>Convert 1 <%= @currencies.keys %> to...</p>
-
-
+<% @currencies.each_key do |currency_code| %>
+  <a href="/currency_code">
+  <li>Convert 1 <%= currency_code %> to...</li>
+<% end %>
