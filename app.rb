@@ -20,20 +20,35 @@ get("/") do
 end
 
 get("/:from_currency") do
-  @original_currency = params.fetch("from_currency")
+  @from = params.fetch("from_currency")
 
-  api_url = "https://api.exchangerate.host/list?access_key=#{ENV.fetch("3f7fcf1d090548ea5f5ab1de8c9c6a4f")}"
   
-  # Some more code to parse the URL and render a view template.
-  # (HINT: this code is identical to the first route, you just
-  # render a different view template at the end.)
+  @url = "https://api.exchangerate.host/list?access_key=3f7fcf1d090548ea5f5ab1de8c9c6a4f"
+
+  @raw_response = HTTP.get(@url)
+  
+  @string_response = @raw_response.to_s
+  
+  @parsed_response = JSON.parse(@string_response)
+  
+  @currencies = @parsed_response.fetch("currencies")
+
+  erb(:step_one)
 end
 
 get("/:from_currency/:to_currency") do
-  @original_currency = params.fetch("from_currency")
-  @destination_currency = params.fetch("to_currency")
+  @from = params.fetch("from_currency")
+  @to = params.fetch("to_currency")
 
-  api_url = "https://api.exchangerate.host/convert?access_key=#{ENV.fetch("3f7fcf1d090548ea5f5ab1de8c9c6a4f")}&from=#{@original_currency}&to=#{@destination_currency}&amount=1"
-  
-  # Some more code to parse the URL and render a view template.
+  @url = "https://api.exchangerate.host/convert?from=#{@from}&to=#{@to}&amount=1&access_key=3f7fcf1d090548ea5f5ab1de8c9c6a4f"
+
+  @raw_response = HTTP.get(@url)
+
+  @string_response = @raw_response.to_s
+
+  @parsed_response = JSON.parse(@string_response)
+
+  @amount = @parsed_response.fetch("result")
+
+  erb(:step_two)
 end
